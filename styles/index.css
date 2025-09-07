@@ -1,0 +1,87 @@
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+}
+
+header, footer {
+    padding: 10px;
+    background-color: rgb(36, 36, 36);
+    flex: 0 0 auto;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+#canvas {
+    background-color: darkslategrey;
+    flex: 1;
+    overflow: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.mainTable {
+    border: 5px solid rgb(36, 36, 36);
+    align-items: center;
+}
+
+.box {
+    border: 5px solid rgb(36, 36, 36);
+}
+
+.box td {
+    padding: 10px 20px;
+    background-color: black;
+    border: 1px solid green;
+    font-weight: bolder;
+    font-size: xx-large;
+}
+
+.box td:hover {
+    background-color: teal;
+}
+
+.val-1 {
+    color: red;
+}
+
+.val-2 {
+    color: orangered;
+}
+
+.val-3 {
+    color: orange;
+}
+
+.val-4 {
+    color: yellow;
+}
+
+.val-5 {
+    color: yellowgreen;
+}
+
+.val-6 {
+    color: green;
+}
+
+.val-7 {
+    color: blue;
+}
+
+.val-8 {
+    color: purple;
+}
+
+.val-9 {
+    color: blueviolet;
+}
