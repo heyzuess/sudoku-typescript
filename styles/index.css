@@ -1,12 +1,14 @@
 html, body {
     height: 100%;
     margin: 0;
+    padding: 0;
 }
 
 body {
     background-color: black;
     display: flex;
     flex-direction: column;
+    min-height: 100vh;
 }
 
 header, footer {
@@ -21,8 +23,6 @@ table {
 
 #canvas {
     background-color: darkslategrey;
-    flex: 1;
-    overflow: auto;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -43,7 +43,8 @@ table {
     background-color: black;
     border: 1px solid green;
     font-weight: bolder;
-    font-size: xx-large;
+    font-size: 32px;
+    font-family: sans-serif;
 }
 
 .box td:hover {
@@ -84,4 +85,47 @@ table {
 
 .val-9 {
     color: blueviolet;
+}
+
+.active {
+    background-color: greenyellow !important;
+}
+
+#main {
+    display: flex;
+    background-color: darkslategray;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    flex: 1;
+    overflow: auto;
+}
+
+#detailPane {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    background-color: slategray;
+    flex-direction: column;
+    font-family: sans-serif;
+}
+
+#detailPane label {
+    font-size: 24px;
+    font-weight: bolder;
+    background-color: rgb(98, 111, 124);
+}
+
+#detailPane input {
+    font-size: 32px;
+    font-weight: bold;
+    outline: none;
+    border: 0;
+    margin-bottom: 10px;
+    color: white;
+    padding-left: 10px;
+}
+
+#detailPane input#value {
+    color: darkslateblue;
 }

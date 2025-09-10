@@ -6,6 +6,7 @@ class Tile {
     private _table : number;
     private _tableX : number;
     private _tableY : number;
+    public id : string;
 
     constructor(x: number, y : number);
     constructor(x: number, y : number, value : number);
@@ -31,8 +32,8 @@ class Tile {
     }
 
     public set value(v : number) {
-        if (v < 1 || v > 9) {
-            throw new Error("Value must be between 1 and 9");
+        if (v < 0 || v > 9) {
+            throw new Error("Value must be between 0 and 9");
         }
 
         this._value = v;
@@ -63,5 +64,9 @@ class Tile {
 
     public set tableY(tableY : number) {
         this._tableY = tableY;
+    }
+
+    public toString() : string {
+        return `x${this.x}-y${this.y}:t${this.table}-tx${this.tableX}-ty${this.tableY}`;
     }
 }

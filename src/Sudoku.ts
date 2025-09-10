@@ -84,6 +84,7 @@ class Sudoku {
                         tile.table = ret.length - 1;
                         tile.tableX = tableX;
                         tile.tableY = tableY;
+                        tile.id = tile.toString();
                         ret[ret.length - 1].push(tile);
                         tableX++;
                     }
@@ -138,6 +139,49 @@ class Sudoku {
     
                 let id : string = `t${i}-i${j}:r${rowId}-c${colId}`;
                 let tempCol : string = `<td id="${id}" class="cell val-${col}">${col}</td>\n`;
+                tempRow += tempCol;
+                
+                if ((j + 1) % 3 == 0) {
+                    tempRow += "</tr>\n";
+                }
+            });
+    
+            tempRow += "</table></td>\n";
+            returnVal += tempRow;
+    
+            // End - 1st entry of each row
+            if ((i + 1) % 3 == 0) {
+                returnVal += "</tr>\n";
+            }
+        });
+    
+        returnVal += "</table>";
+    
+        return returnVal;
+    }
+
+    public toString () : string {
+        let returnVal : string = '<table class="mainTable">\n';
+        let list = this._grid;
+
+        list.forEach((row, i) => {
+            //console.log(`transformGrid \t` +
+            //            `i: ${i}`);
+    
+            // Start - 1st entry of each row
+            if ((i + 3) % 3 == 0) {
+                returnVal += "<tr>\n";
+            }
+    
+            let tempRow : string = `<td><table class="box" id="table-${i + 1}">\n`;
+    
+            // Split each array into 3 rows each
+            row.forEach((col, j) => {
+                if ((j + 3) % 3 == 0) {
+                    tempRow += "<tr>\n";
+                }
+    
+                let tempCol : string = `<td id="${col.id}" class="cell val-${col.value}">${col.value}</td>\n`;
                 tempRow += tempCol;
                 
                 if ((j + 1) % 3 == 0) {
