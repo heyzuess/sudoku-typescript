@@ -162,7 +162,7 @@ class Sudoku {
 
     public toString () : string {
         let returnVal : string = '<table class="mainTable">\n';
-        let list = this._grid;
+        let list = this._tableGrid; //this._grid;
 
         list.forEach((row, i) => {
             //console.log(`transformGrid \t` +
@@ -201,5 +201,24 @@ class Sudoku {
         returnVal += "</table>";
     
         return returnVal;
+    }
+
+    public checkTile(tile: Tile) : Tile[] {
+        let ret: Tile[] = [];
+        let grid: Tile[][] = this.grid;
+
+        for (let i = 0; i < grid[tile.y].length; i++) {
+            let t = grid[tile.y][i];
+            if (t.x === tile.x && t.y === tile.y) continue;
+            if (t.value === tile.value) ret.push(t);
+        }
+
+        for (let i = 0; i < grid.length; i++) {
+            let t = grid[i][tile.x];
+            if (t.x === tile.x && t.y === tile.y) continue;
+            if (t.value === tile.value) ret.push(t);
+        }
+        
+        return ret;
     }
 }

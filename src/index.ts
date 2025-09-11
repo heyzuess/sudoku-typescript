@@ -7,7 +7,7 @@ let activeCell : Tile;
 
 document.getElementById("canvas").innerHTML = html;
 
-game.tableGrid.forEach( row => {
+game.grid.forEach( row => {
     row.forEach(col => {
         let temp = document.getElementById(col.id);
         temp.onclick = () => setActiveCell(col.x, col.y);
@@ -15,6 +15,14 @@ game.tableGrid.forEach( row => {
 });
 
 addEventListener("keypress", (event) => readInput(event));
+
+console.log(game.toNumberGrid(game.grid));
+console.log(game.grid);
+
+console.log(game.toNumberGrid(game.tableGrid));
+console.log(game.tableGrid);
+
+console.log(game.checkTile(game.grid[0][0]));
 
 function setActiveCell(x: number, y: number) : void {
     let temp;
