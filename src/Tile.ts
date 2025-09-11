@@ -69,4 +69,15 @@ class Tile {
     public toString() : string {
         return `x${this.x}-y${this.y}:t${this.table}-tx${this.tableX}-ty${this.tableY}`;
     }
+
+    public static copy(tile : Tile) : Tile {
+        let newTile: Tile = new Tile(tile.x, tile.y);
+        newTile.value = tile.value;
+        newTile.table = tile.table;
+        newTile.tableX = tile.tableX;
+        newTile.tableY = tile.tableY;
+        newTile.id     = tile.id;
+
+        return newTile;
+    }
 }

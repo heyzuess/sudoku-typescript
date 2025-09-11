@@ -23,11 +23,23 @@ class Sudoku {
     }
 
     public get grid() : Tile[][] {
-        return Array.from(this._grid);
+        let copy: Tile[][] = [];
+
+        this._grid.forEach(row => {
+            copy.push(Array.from(row));
+        });
+
+        return copy;
     }
 
     public get tableGrid() : Tile[][] {
-        return Array.from(this._tableGrid);
+        let copy: Tile[][] = [];
+
+        this._tableGrid.forEach(row => {
+            copy.push(Array.from(row));
+        });
+
+        return copy;
     }
 
     private _makeTileGrid(width : number, height: number) : Tile[][] {
@@ -181,7 +193,7 @@ class Sudoku {
                     tempRow += "<tr>\n";
                 }
     
-                let tempCol : string = `<td id="${col.id}" class="cell val-${col.value}">${col.value}</td>\n`;
+                let tempCol : string = `<td id="${col.id}" class="cell val-${col.value}">${col.value === 0 ? "&nbsp;" : col.value}</td>\n`;
                 tempRow += tempCol;
                 
                 if ((j + 1) % 3 == 0) {
@@ -207,18 +219,47 @@ class Sudoku {
         let ret: Tile[] = [];
         let grid: Tile[][] = this.grid;
 
+        if (tile.value === 0) return ret;
+
         for (let i = 0; i < grid[tile.y].length; i++) {
             let t = grid[tile.y][i];
+            if (t.value === 0) continue;
             if (t.x === tile.x && t.y === tile.y) continue;
             if (t.value === tile.value) ret.push(t);
         }
 
         for (let i = 0; i < grid.length; i++) {
             let t = grid[i][tile.x];
+            if (t.value === 0) continue;
             if (t.x === tile.x && t.y === tile.y) continue;
             if (t.value === tile.value) ret.push(t);
         }
         
         return ret;
+    }
+
+    public resetAndCheck(tile: Tile) : boolean {
+        let retVal: boolean = false;
+        let list: number[] = [];
+
+        for (let i = 0; i < 9; i++) {
+            list.push(i + 1);
+        }
+
+        let tempList: number[] = Array.from(list);
+        let newTile: Tile = Tile.copy(tile); 
+
+        while (tempList.length > 0 && !retVal) {
+            let next: number = Math.floor(Math.random() * tempList.length);
+            let newVal: number = tempList.splice(next, 1)[0];
+            newTile.value = newVal;
+
+            let conflicts: Tile[] = this.checkTile(newTile);
+            retVal = conflicts.length === 0;
+        }
+
+        if (retVal) tile.value = newTile.value;
+
+        return retVal;
     }
 }
